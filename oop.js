@@ -83,6 +83,9 @@ function Cat4() {
   // this.type = 'cat'; // 会覆盖上面继承的东西
   this.c = 'c';
 }
+
+// 可以改一下，Function.prototype.extend 写方法
+// 使用更方便：Child.extend(Parent);
 function extend(Child, Parent) {
   var fn = function() {};
   fn.prototype = Parent.prototype;

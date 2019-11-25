@@ -8,7 +8,7 @@ function getCoinNum(N) {
   let n2 = 4;
   let n3 = 5;
 
-  // 输出结果组合、最少数量 6*5 + 1 + 1
+  // 输出结果组合、最少数量，如：12: { result: '5*2,4*0,2*1', minCount: 4 }
   const getResult = (result, minCount) => ({ result, minCount });
 
   if (N < n2) return getResult(`${n1}*${N}`, N / n1);
