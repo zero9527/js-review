@@ -12,7 +12,7 @@ var arr = [
 
 /**
  * Array.map
- * 回调函数的返回值作为 item，返回一个与原数组一样长度的新数组
+ * 回调函数的返回值作为 `item`，返回一个与原数组一样长度的新数组
  */
 Array.prototype._map = function(cb) {
   var arr = this;

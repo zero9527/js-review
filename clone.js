@@ -1,5 +1,6 @@
 /**
  * 浅拷贝
+ * 只拷贝一层 key，如果这个 key 是复杂数据类型（Object/Array）的话，有引用赋值
  */
 function clone(objArr) {
   var getType = o => Object.prototype.toString.call(o);
@@ -41,9 +42,9 @@ var obj1 = {
 
 /**
  * 深拷贝
- * 判断obj是否对象或数组，否的话直接返回；
- * 是的话，对象则给新变量初始化为对象 {}，数组则 []，
- * 然后 循环判断每个key，key的值是对象或数组的话继续循环
+ * 判断 `objArr` 是否对象或数组，否的话直接返回；
+ * 是的话，对象则给新变量初始化为对象 `{}`，数组则 `[]`，
+ * 然后 循环判断每个 `key`，`key` 的值是对象或数组的话继续循环
  */
 function deepClone(objArr) {
   var getType = o => Object.prototype.toString.call(o);

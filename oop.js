@@ -1,6 +1,46 @@
 /**
  * 面向对象三大特性：封装、继承、多态
  */
+
+/**
+ * new 的时候做了什么？
+ * 1. 创建一个新对象；
+ * 2. 将构造函数的作用域赋给新对象（因此 this 就指向了这个新对象）；
+ * 3. 执行构造函数中的代码（为这个新对象添加属性）；
+ * 4. 返回新对象。
+ */
+function F(type) {
+  this.type = type;
+  this.f = 'f';
+
+  this.run = function(m) {
+    console.log('run: ', m);
+  }
+}
+F.prototype.a = 'a';
+
+function _new() {
+  var obj = {};
+  var fn = Array.prototype.shift.call(arguments);
+
+  obj.__proto__ = fn.prototype;
+  var newObj = fn.apply(obj, arguments);
+
+  return (
+    Object.prototype.toString.call(newObj) === '[object Object]'
+    ? newObj
+    : obj
+  );
+}
+
+// var f1 = new F();
+var f1 = _new(F, 'F4');
+console.log('f: ', f1); // { type: 'F4', f: 'f', run: [Function] }
+console.log('a: ', f1.a); // a
+console.log('type: ', f1.type); // F4
+f1.run(2); // 2
+
+
 function Animal(place) {
   this.place = place;
   this.type = 'animal';

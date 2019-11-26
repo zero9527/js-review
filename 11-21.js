@@ -32,7 +32,7 @@ function getCoinNum(N) {
   }
 }
 
-// for (var i=0; i<=50; i++) console.log(`${i}: `, getCoinNum(i));
+for (var i=0; i<=50; i++) console.log(`${i}: `, getCoinNum(i));
 /**
  * 打印：
  * 0:  { result: '1*0', minCount: 0 }
@@ -104,5 +104,5 @@ function fb2(n) {
   return arr;
 }
 
-console.log(fb2(15));
+// console.log(fb2(15));
 // [ 1, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610 ]
