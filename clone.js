@@ -44,7 +44,7 @@ var obj1 = {
  * 深拷贝
  * 判断 `objArr` 是否对象或数组，否的话直接返回；
  * 是的话，对象则给新变量初始化为对象 `{}`，数组则 `[]`，
- * 然后 循环判断每个 `key`，`key` 的值是对象或数组的话继续循环
+ * 然后 循环判断每个 `key`，`key` 的值是对象或数组的话 递归执行
  */
 function deepClone(objArr) {
   var getType = o => Object.prototype.toString.call(o);

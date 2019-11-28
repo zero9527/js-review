@@ -122,16 +122,18 @@ Array.prototype._find = function(cb) {
     if (Boolean(cb(arr[i], i))) {
       item = arr[i];
     }
+    i++;
   }
 
   return item;
 }
 
-// var item1 = arr._find(item => item.b === 'b1');
-// var item2 = arr._find(item => item);
-// console.log(arr);
+// var item1 = arr._find(item => item);
+// var item2 = arr._find(item => item.b === 'b1');
+// var item3 = arr._find(item => item.b === 'b2');
 // console.log(item1); // { a: 'a1', b: 'b1', c: [ 'c1' ], d: 'd' }
 // console.log(item2); // { a: 'a1', b: 'b1', c: [ 'c1' ], d: 'd' }
+// console.log(item3); // { a: 'a3', b: 'b2', c: [ 'c2' ], d: 'd' }
 
 
 /**
@@ -169,6 +171,7 @@ Array.prototype._some = function(cb) {
   var i = 0;
 
   while(i < arr.length && !result) {
+    console.log('i: ', i);
     result = Boolean(cb(arr[i], i));
     i++;
   }
@@ -176,12 +179,14 @@ Array.prototype._some = function(cb) {
   return result;
 }
 
-// var has_a1 = arr._some(item => item.a === 'a1');
-// var has_b = arr._some(item => item.b === 'b');
-// var has_b1 = arr._some(item => item.b === 'b1');
-// console.log(has_a1); // true
-// console.log(has_b); // false
-// console.log(has_b1); // true
+var has_a1 = arr._some(item => item.a === 'a1');
+console.log(has_a1); // true
+
+var has_b = arr._some(item => item.b === 'b');
+console.log(has_b); // false
+
+var has_b1 = arr._some(item => item.b === 'b1');
+console.log(has_b1); // true
 
 
 /**
