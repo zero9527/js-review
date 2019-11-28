@@ -81,17 +81,17 @@ Function.prototype._call = function(ctx) {
   return res;
 }
 
-// a: obj2-a, c: cc2, d: dd2
-obj.fn._call(obj2, 'cc2', 'dd2'); 
+// // a: obj2-a, c: cc2, d: dd2
+// obj.fn._call(obj2, 'cc2', 'dd2'); 
 
-// a: obj3-a, c: cc3, d: dd3
-obj.fn._call(obj3, 'cc3', 'dd3'); 
+// // a: obj3-a, c: cc3, d: dd3
+// obj.fn._call(obj3, 'cc3', 'dd3'); 
 
-// a: window-a, c: cc-null, d: dd
-obj.fn._call(null, 'cc-null', 'dd'); 
+// // a: window-a, c: cc-null, d: dd
+// obj.fn._call(null, 'cc-null', 'dd'); 
 
-// a: window-a, c: cc-undefined, d: dd
-obj.fn._call(undefined, 'cc-undefined', 'dd'); 
+// // a: window-a, c: cc-undefined, d: dd
+// obj.fn._call(undefined, 'cc-undefined', 'dd'); 
 
 
 /**
@@ -121,20 +121,20 @@ Function.prototype._apply = function(ctx) {
   return res;
 }
 
-// a: obj-a, c: cc, d: dd
-obj.fn('cc', 'dd');
+// // a: obj-a, c: cc, d: dd
+// obj.fn('cc', 'dd');
 
-// a: obj2-a, c: cc2, d: dd2
-obj.fn._apply(obj2, ['cc2', 'dd2']);
+// // a: obj2-a, c: cc2, d: dd2
+// obj.fn._apply(obj2, ['cc2', 'dd2']);
 
-// a: obj3-a, c: cc3, d: dd3
-obj.fn._apply(obj3, ['cc3', 'dd3']);
+// // a: obj3-a, c: cc3, d: dd3
+// obj.fn._apply(obj3, ['cc3', 'dd3']);
 
-// a: window-a, c: cc-null, d: dd-null
-obj.fn._apply(null, ['cc-null', 'dd-null']);
+// // a: window-a, c: cc-null, d: dd-null
+// obj.fn._apply(null, ['cc-null', 'dd-null']);
 
-// a: window-a, c: cc-undefined, d: dd-undefined
-obj.fn._apply(undefined, ['cc-undefined', 'dd-undefined']);
+// // a: window-a, c: cc-undefined, d: dd-undefined
+// obj.fn._apply(undefined, ['cc-undefined', 'dd-undefined']);
 
 
 /**
@@ -175,3 +175,67 @@ Function.prototype._bind = function(ctx) {
 // // 这个时候是不能再绑定的，所以打印的是第一次绑定的内容
 // fn3.bind(obj2, 'cc2', 'dd2');
 // fn3(); // a: obj3-a, c: cc3, d: dd3
+
+/**
+内部函数，私有变量
+
+* 闭包：有权访问外部作用域的私有变量的函数；
+* 被闭包引用的变量不会被自动清理(gc)
+
+也可以这么理解：函数的内部函数引用外部的私有变量，那么内部函数就是闭包；
+
+ */
+function f1() {
+  var a = 0;
+  var b = 0;
+  var c = 0;
+
+  return function() {
+    var d = a++;
+    var e = d;
+    var f = c++;
+    console.log(d, e, f);
+  }
+}
+
+var ff = f1();
+ff();
+ff();
+
+// // 10个10
+// for (var i=0; i<10; i++) {
+//   setTimeout(() => {
+//     console.log(i);
+//   }, 0);
+// }
+
+// // 0-9
+// for (var i=0; i<10; i++) {
+//   setTimeout((j) => {
+//     console.log(j);
+//   }, 0, i);
+// }
+
+// // 0-9
+// for (var i=0; i<10; i++) {
+//   (function(j) {
+//     setTimeout(() => {
+//       console.log(j);
+//     }, 0)
+//   })(i)
+// }
+
+// // 0-9
+// for (let i=0; i<10; i++) {
+//   setTimeout(() => {
+//     console.log(i);
+//   }, 0);
+// }
+
+// 10个10
+// let i;
+// for (i=0; i<10; i++) {
+//   setTimeout(() => {
+//     console.log(i);
+//   }, 0);
+// }

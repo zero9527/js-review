@@ -1,53 +1,4 @@
 /**
- * Array.sort
- * 接收一个函数，函数的参数一为 `当前 item`，参数二为 `下一个 item`
- * 按照函数的返回值为 true 的顺序排序，
- * 返回一个新数组
- * 
- * ++++++ 未完 ++++++
- */
-Array.prototype._sort = function(cb) {
-  var arr = this;
-
-  for (var i=0; i<arr.length; i++) {
-    for (var j=i; j<arr.length; j++) {
-      // 大于0时升序，小于0时降序；默认升序
-      // var asc = cb ? Boolean(cb(1, 0) > 0) : true;
-      var asc = cb ? Boolean(
-        cb(arr[i], arr[i+1]) > 0
-      ) : true;
-      
-      var temp = '';
-
-      if (asc && arr[i] > arr[j]) {
-        temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-      } 
-      if (!asc && arr[i] < arr[j]) {
-        temp = arr[j];
-        arr[j] = arr[i];
-        arr[i] = temp;
-      }
-    }
-  }
-
-  return arr;
-}
-
-// var arr = [1,3,4,12,34,5,22,8];
-// console.log(arr._sort()); // [ 1, 3, 4, 5, 8, 12, 22, 34 ]
-// console.log(arr._sort((x, y) => {
-//   console.log('x, y:', x, y);
-//   return x - y;
-// })); // [ 1, 3, 4, 5, 8, 12, 22, 34 ]
-// console.log(arr._sort((x, y) => y - x)); // [ 34, 22, 12, 8, 5, 4, 3, 1 ]
-
-// var arr1 = ['a', 'q', 'g', 'd'];
-// console.log(arr1._sort()); // [ 'a', 'd', 'g', 'q' ]
-
-
-/**
  * 冒泡排序
  * @param {*} arr 
  */
@@ -123,3 +74,53 @@ console.log(FastSort(arr1));
 
 // [ { num: 8 }, { num: 10 }, { num: 26 }, { num: 36 } ]
 console.log(FastSort(arr1, 'num'));
+
+/**
+ * Array.sort
+ * 接收一个函数，函数的参数一为 `当前 item`，参数二为 `下一个 item`
+ * 按照函数的返回值为 true 的顺序排序，
+ * 返回一个新数组
+ * 
+ * ++++++ 未完 ++++++
+ */
+Array.prototype._sort = function(cb) {
+  var arr = this;
+
+  for (var i=0; i<arr.length; i++) {
+    for (var j=i; j<arr.length; j++) {
+      // 大于0时升序，小于0时降序；默认升序
+      // var asc = cb ? Boolean(cb(1, 0) > 0) : true;
+      var asc = cb ? Boolean(
+        cb(arr[i], arr[i+1]) > 0
+      ) : true;
+      
+      var temp = '';
+
+      if (asc && arr[i] > arr[j]) {
+        temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+      } 
+      if (!asc && arr[i] < arr[j]) {
+        temp = arr[j];
+        arr[j] = arr[i];
+        arr[i] = temp;
+      }
+    }
+  }
+
+  return arr;
+}
+
+// var arr = [1,3,4,12,34,5,22,8];
+// console.log(arr._sort()); // [ 1, 3, 4, 5, 8, 12, 22, 34 ]
+// console.log(arr._sort((x, y) => {
+//   console.log('x, y:', x, y);
+//   return x - y;
+// })); // [ 1, 3, 4, 5, 8, 12, 22, 34 ]
+// console.log(arr._sort((x, y) => y - x)); // [ 34, 22, 12, 8, 5, 4, 3, 1 ]
+
+// var arr1 = ['a', 'q', 'g', 'd'];
+// console.log(arr1._sort()); // [ 'a', 'd', 'g', 'q' ]
+
+
