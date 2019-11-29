@@ -12,6 +12,7 @@ var arr = [
 
 /**
  * Array.prototype.map
+ * 将 `item`，`循环序列号`，`当前数组` 作为参数传给回调函数；
  * 回调函数的返回值作为 `item`，返回一个与原数组一样长度的新数组
  */
 Array.prototype._map = function(cb) {
@@ -58,7 +59,7 @@ Array.prototype._map = function(cb) {
 
 /**
  * Array.prototype.forEach
- * for 循环，将 `item`、`循环序列号` 作为两个参数传给回调函数，循环直接执行回调函数
+ * for 循环，将 `item`，`循环序列号`，`当前数组` 作为参数传给回调函数；循环直接执行回调函数
  * 语法：arr.forEach(callback(currentValue [, index [, array]])[, thisArg]);
  */
 Array.prototype._forEach = function(cb) {
@@ -89,7 +90,7 @@ Array.prototype._forEach = function(cb) {
 
 /**
  * Array.prototype.filter
- * 将 `item`、`循环序列号` 作为两个参数传给回调函数；
+ * 将 `item`，`循环序列号`，`当前数组` 作为参数传给回调函数；
  * 回调函数的返回值作为条件，去过滤原数组，返回符合条件的 `item` 组成的数组
  */
 Array.prototype._filter = function(cb) {
@@ -99,7 +100,7 @@ Array.prototype._filter = function(cb) {
   var i = 0;
 
   while(i < arr.length) {
-    var res = Boolean(cb.call(_this, arr[i], i));
+    var res = Boolean(cb.call(_this, arr[i], i, arr));
     if (res) newArr.push(arr[i]);
     i++;
   }
@@ -122,7 +123,7 @@ Array.prototype._filter = function(cb) {
 
 /**
  * Array.prototype.find
- * 将 `item`、`循环序列号` 作为两个参数传给回调函数；
+ * 将 `item`，`循环序列号`，`当前数组` 作为参数传给回调函数；
  * 回调函数的返回值作为条件，只找一个，返回第一个符合条件的 `item` 
  */
 Array.prototype._find = function(cb) {
@@ -132,7 +133,7 @@ Array.prototype._find = function(cb) {
   var i = 0;
 
   while(i < arr.length && item === null) {
-    if (Boolean(cb.call(_this, arr[i], i))) {
+    if (Boolean(cb.call(_this, arr[i], i, arr))) {
       item = arr[i];
     }
     i++;
@@ -154,7 +155,7 @@ Array.prototype._find = function(cb) {
 
 /**
  * Array.prototype.every
- * 将 `item`、`循环序列号` 作为两个参数传给回调函数；
+ * 将 `item`，`循环序列号`，`当前数组` 作为参数传给回调函数；
  * 回调函数的返回值作为条件，判断是否所有 `item` 符合；也可以反向用 `Array.some` 找一个不符合的来替代
  */
 Array.prototype._every = function(cb) {
@@ -164,7 +165,7 @@ Array.prototype._every = function(cb) {
   var i = 0;
 
   while(i < arr.length) {
-    result = Boolean(cb.call(_this, arr[i], i));
+    result = Boolean(cb.call(_this, arr[i], i, arr));
     i++;
   }
 
@@ -182,7 +183,7 @@ Array.prototype._every = function(cb) {
 
 /**
  * Array.prototype.some
- * 将 `item`、`循环序列号` 作为两个参数传给回调函数；
+ * 将 `item`，`循环序列号`，`当前数组` 作为参数传给回调函数；
  * 查找符合条件的 `item`，只找一个，返回 `Boolean`
  */
 Array.prototype._some = function(cb) {
@@ -192,7 +193,7 @@ Array.prototype._some = function(cb) {
   var i = 0;
 
   while(i < arr.length && !result) {
-    result = Boolean(cb.call(_this, arr[i], i));
+    result = Boolean(cb.call(_this, arr[i], i, arr));
     i++;
   }
 
@@ -214,7 +215,7 @@ Array.prototype._some = function(cb) {
 
 /**
  * Array.prototype.reduce
- * 将 `item`、`循环序列号` 作为两个参数传给回调函数；
+ * 将 `item`，`循环序列号`，`当前数组` 作为参数传给回调函数；
  * 累计循环；两个参数，第一个为函数（其中，第一个形参为第二个参数），第二个参数可不传;
  * 回调函数的返回值作为下次回调的第二个参数，最终返回回调函数的返回值
  */
