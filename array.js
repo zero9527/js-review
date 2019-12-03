@@ -73,7 +73,7 @@ Array.prototype._forEach = function(cb) {
   }
 }
 
-// arr.forEach(function(item) {
+// arr._forEach(function(item) {
 //   console.log('this: ', this); // this:  { a: 'aaaa' }
 
 //   item.a = 'aa';
@@ -234,14 +234,14 @@ Array.prototype._reduce = function(cb) {
 }
 
 // 求和
-var list = [1,2,3,4,5,6,7,8,9];
-var result = list._reduce((acc, cur) => acc + cur, 0);
-console.log(result); // 45
+// var list = [1,2,3,4,5,6,7,8,9];
+// var result = list._reduce((acc, cur) => acc + cur, 0);
+// console.log(result); // 45
 
-// 统计某个字符出现的次数
-var list2 = ['aa', 'bb', 'jj', 'cc', 'dd', 'aa', 'b1'];
-var result2 = list2._reduce((acc, cur) => {
-  acc[cur] ? acc[cur]++ : acc[cur] = 1;
-  return acc;
-}, {});
-console.log(result2); // { aa: 2, bb: 1, jj: 1, cc: 1, dd: 1 }
+// // 统计某个字符出现的次数
+// var list2 = ['aa', 'bb', 'jj', 'cc', 'dd', 'aa', 'b1'];
+// var result2 = list2._reduce((acc, cur) => {
+//   acc[cur] ? acc[cur]++ : acc[cur] = 1;
+//   return acc;
+// }, {});
+// console.log(result2); // { aa: 2, bb: 1, jj: 1, cc: 1, dd: 1 }
